@@ -8,8 +8,9 @@ import Box from "@mui/material/Box"
 import { Link } from "react-router-dom"
 import RegisterForm, { registerSchema } from "../components/RegisterForm"
 import { Formik } from "formik"
-
+import useAuthCall from "../service/useAuthCall"
 const Register = () => {
+  const {register} = useAuthCall()
   return (
     <Container maxWidth="lg">
       <Grid
@@ -58,7 +59,7 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-              //TODO register(values)
+            register({...values, password2:values.password})
               actions.resetForm()
               actions.setSubmitting(false)
             }}
