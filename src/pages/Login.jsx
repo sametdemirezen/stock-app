@@ -10,9 +10,10 @@ import TextField from "@mui/material/TextField"
 import { Button } from "@mui/material"
 import { Formik,Form } from "formik"
 import { object, string} from 'yup';
-import { login } from "../service/authApiCall"
+import useAuthCall from "../service/useAuthCall"
+
 const Login = () => {
-  const navigate = useNavigate()
+  const {login} = useAuthCall()
   
   const loginSchema = object({
     email: string().email().required(),
