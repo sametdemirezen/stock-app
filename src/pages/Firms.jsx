@@ -5,7 +5,7 @@ import useStockCall from "../service/useStockCall"
 import { useSelector } from "react-redux"
 
 const Firms = () => {
-  const {getFirms} = useStockCall()
+  const {getStockData} = useStockCall()
   const {firms} = useSelector((state) => state.stock)
  /*  const {token} = useSelector(state => state.auth)
   const dispatch = useDispatch() */
@@ -25,9 +25,9 @@ try {
 
   } */
   useEffect(() => {
-    getFirms()
+    getStockData("firms")
   },[])
-  console.log(firms);
+  
   return <div>
     <Typography variant="h4" color={"error"} mb={3}>Firms</Typography>
     <Button variant="contained">New Firm</Button>
