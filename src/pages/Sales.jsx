@@ -7,7 +7,7 @@ const {sales}= useSelector((state) => state.stock)
   useEffect(() => {
     getStockData("sales")
   },[])
-  console.log(purchases);
+  console.log(sales);
   return <div>Sales</div>
 }
 
