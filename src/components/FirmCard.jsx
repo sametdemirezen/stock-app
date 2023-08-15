@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { buttonStyle } from '../styles/globalStyles';
 export default function FirmCard({firm}) {
   return (
     <Card sx={{p:2,
@@ -33,8 +34,8 @@ export default function FirmCard({firm}) {
          {firm.phone}
         </Typography>
       <CardActions>
-        <EditOutlinedIcon/>
-        <HighlightOffIcon/>
+        <EditOutlinedIcon sx={buttonStyle}/>
+        <HighlightOffIcon sx={buttonStyle}/>
       </CardActions>
     </Card>
   );
