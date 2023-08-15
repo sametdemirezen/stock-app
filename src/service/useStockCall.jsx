@@ -1,6 +1,7 @@
 import { fetchFail, fetchStart, getStockSuccess } from "../features/stockSlice"
 import { useDispatch } from "react-redux"
 import useAxios from "./useAxios"
+import {toastErrorNotify,toastSuccessNotify } from "../helper/ToastNotify"
 const useStockCall = () => {
     const dispatch = useDispatch()
     const {axiosWithToken} = useAxios()
@@ -32,25 +33,21 @@ const useStockCall = () => {
       }
 
 
-
-
-    /* const getFirms = async () => {
+      const postStockData = async (url, info) => {
         dispatch(fetchStart())
-    try {
-      const {data} = await axios(`${import.meta.env.VITE_BASE_URL}/stock/firms/`, {
-        headers: {Authorization: `Token ${token}`}
-      })
-      dispatch(getStockSuccess(data))
-      console.log(data);
-    } catch (error) {
-      dispatch(fetchFail())
-      console.log(error);
-    }
-    
-      } */
+        try {
+          await axiosWithToken.post(`/stock/${url}/`, info)
+          toastSuccessNotify(`${url} er sendt`)
+          getStockData(url)
+        } catch (error) {
+          dispatch(fetchFail())
+          toastErrorNotify(`${url} kan ikke sendes`)
+          console.log(error)
+        }
+      }
   
   
-    return {getStockData, deleteStockData}
+    return {getStockData, deleteStockData, postStockData}
 }
 
 export default useStockCall

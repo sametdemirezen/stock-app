@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppRouter from "./router/AppRouter";
-import { pink, lightGreen } from "@mui/material/colors";
+import { pink, lightGreen, grey } from "@mui/material/colors";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import { ToastContainer } from "react-toastify";
@@ -14,6 +14,9 @@ function App() {
       secondary: {
         main: lightGreen["700"],
       },
+      greyCard: {
+        main: grey["100"]
+      }
     },
   });
   return (

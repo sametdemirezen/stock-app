@@ -7,7 +7,9 @@ import Typography from '@mui/material/Typography';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { buttonStyle } from '../styles/globalStyles';
-export default function FirmCard({firm}) {
+import useStockCall from '../service/useStockCall';
+export default function FirmCard({firm, handleOpen, info, setInfo}) {
+    const {deleteStockData} = useStockCall()
   return (
     <Card sx={{p:2,
         width: "250px",
@@ -15,7 +17,9 @@ export default function FirmCard({firm}) {
         display: "flex",
         justifyContent: "space-between",
         flexDirection: "column",
-        alignItems: "center"}}>
+        alignItems: "center",
+        backgroundColor: "greyCard.main"
+       }} >
         <CardContent>
         <Typography gutterBottom variant="h5" component="div">
          {firm.name}
@@ -34,8 +38,10 @@ export default function FirmCard({firm}) {
          {firm.phone}
         </Typography>
       <CardActions>
-        <EditOutlinedIcon sx={buttonStyle}/>
-        <HighlightOffIcon sx={buttonStyle}/>
+        <EditOutlinedIcon sx={buttonStyle} onClick={() =>{
+            handleOpen()
+            setInfo(firm)}}/>
+        <HighlightOffIcon sx={buttonStyle} onClick={() => deleteStockData("firms", firm.id)}/>
       </CardActions>
     </Card>
   );
