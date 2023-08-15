@@ -1,8 +1,10 @@
 import { Typography } from "@mui/material"
 import Button from "@mui/material/Button"
+import Grid from "@mui/material/Grid"
 import { useEffect } from "react"
 import useStockCall from "../service/useStockCall"
 import { useSelector } from "react-redux"
+import FirmCard from "../components/FirmCard"
 
 const Firms = () => {
   const {getStockData} = useStockCall()
@@ -31,6 +33,15 @@ try {
   return <div>
     <Typography variant="h4" color={"error"} mb={3}>Firms</Typography>
     <Button variant="contained">New Firm</Button>
+
+    <Grid container spacing={2} justifyContent={"center"}>
+      {firms?.map((firm) =>
+      <Grid item key={firm.id}>
+        <FirmCard firm = {firm}/>
+      </Grid>
+       )}
+      
+    </Grid>
   </div>
 }
 
