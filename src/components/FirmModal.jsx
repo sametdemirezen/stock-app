@@ -7,7 +7,7 @@ import { Button } from "@mui/material"
 import { useState } from 'react';
 import useStockCall from '../service/useStockCall';
 export default function FirmModal({open, handleClose, info, setInfo}) {
-    const {postStockData} = useStockCall()
+    const {postStockData, putStockData} = useStockCall()
     /* const [info, setInfo] = useState({
         name:"",
         phone: "",
@@ -21,11 +21,13 @@ export default function FirmModal({open, handleClose, info, setInfo}) {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        postStockData("firms", info)
-        setInfo({name:"",
-        phone: "",
-        address:"",
-        image: ""})
+        if(info.id){
+          console.log(info.id);
+          putStockData("firms", info)
+          
+        }else {
+          postStockData("firms", info)
+        }
         handleClose()
     }
 
